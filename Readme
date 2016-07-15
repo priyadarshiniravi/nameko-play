@@ -15,6 +15,9 @@ Create and activate a virtualenv (you can also use virtualenv-wrapper)
         $ virtualenv service_env
         $ source service_env/bin/activate
 
+        to deactivate virtualenv
+            $ deactivate
+
 
 Install nameko framework and yagmail
 
@@ -34,6 +37,18 @@ Go to another shell (with the same virtenv) and test it using nameko shell
     try
         >>> n.rpc.mail.send("name@email.com", "testing", "Just testing")
         >>> n.rpc.compute.compute('sum', 30, 10, "name@email.com")
+
+To run the API
+    $ virtualenv api_env
+    $ source api_env/bin/activate
+
+    (api_env)$ pip install nameko
+    (api_env)$ pip install flask
+    (api_env)$ pip install flasgger
+
+    python api.py
+
+(Note: Please update the email address on the service.py before running)
 
 
 
