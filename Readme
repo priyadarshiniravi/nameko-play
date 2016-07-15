@@ -1,0 +1,33 @@
+Run rabbitmq
+
+    $ docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+    for stoping running container
+
+        $ docker stop $(docker ps -a -q)
+        $ docker rm $(docker ps -a -q)
+
+Create and activate a virtualenv (you can also use virtualenv-wrapper)
+    From your project folder
+        $ virtualenv service_env
+        $ source service_env/bin/activate
+
+
+Install nameko framework and yagmail
+
+    (service_env)$ pip install nameko
+    (service_env)$ pip install yagmail
+
+
+Run the service and let it running in a shell
+
+    (service_env)$ nameko run service --broker amqp://guest:guest@localhost
+
+Testing it
+
+Go to another shell (with the same virtenv) and test it using nameko shell
+
+    (service_env)$ nameko shell --broker amqp://guest:guest@localhost
+
+
+
